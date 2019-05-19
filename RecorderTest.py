@@ -72,12 +72,12 @@ try:
             print('#' * 80)
             ticks = 0
             while ticks < delay:
-                while max(q.get()) > minimum:
+                chunk = q.get()
+                while max(chunk) > minimum:
                     ticks = 0
-                    chunk = q.get()
-                    print(chunk)
                     print(max(chunk), len(chunk))
-                    file.write(q.get())
+                    file.write(chunk)
+                    chunk = q.get()
                 ticks += 1
                 
 
